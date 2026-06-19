@@ -1,0 +1,138 @@
+/* BaseNode.css */
+
+.base-node {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 10px 14px 14px;
+  border-radius: 10px;
+  background: #ffffff;
+  border: 1px solid #d7dce3;
+  box-shadow: 0 1px 2px rgba(16, 24, 40, 0.06);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 13px;
+  color: #1c2536;
+}
+
+.base-node--selected {
+  border-color: #1c2536;
+  box-shadow: 0 0 0 2px rgba(28, 37, 54, 0.15);
+}
+
+/* A thin top accent strip color-codes nodes by category at a glance,
+   without committing to a full palette ahead of the Part 2 design pass. */
+.base-node::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  border-radius: 10px 10px 0 0;
+  background: #9aa5b1;
+}
+.base-node--io::before { background: #5b8def; }
+.base-node--ai::before { background: #8a5bef; }
+.base-node--logic::before { background: #e8a23d; }
+.base-node--integration::before { background: #3dbf8f; }
+
+.base-node__header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 4px;
+  font-weight: 600;
+}
+
+.base-node__icon {
+  font-size: 14px;
+  line-height: 1;
+}
+
+.base-node__title {
+  font-size: 13px;
+}
+
+.base-node__description {
+  margin: 0;
+  font-size: 11px;
+  line-height: 1.4;
+  color: #6b7280;
+}
+
+.base-node__body {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.base-node__field {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.base-node__field-label {
+  font-size: 11px;
+  font-weight: 500;
+  color: #4b5563;
+}
+
+.base-node__control {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 4px 6px;
+  border: 1px solid #d7dce3;
+  border-radius: 6px;
+  font-size: 12px;
+  font-family: inherit;
+  background: #fafbfc;
+  color: #1c2536;
+}
+
+.base-node__control:focus {
+  outline: none;
+  border-color: #1c2536;
+  background: #ffffff;
+}
+
+.base-node__control--textarea {
+  resize: vertical;
+  font-family: 'Source Code Pro', Menlo, Monaco, Consolas, monospace;
+}
+
+.base-node__checkbox {
+  width: 14px;
+  height: 14px;
+}
+
+.base-node__handle {
+  width: 9px;
+  height: 9px;
+  background: #1c2536;
+  border: 2px solid #ffffff;
+}
+
+.base-node__handle-label {
+  position: absolute;
+  font-size: 9px;
+  font-weight: 600;
+  color: #6b7280;
+  white-space: nowrap;
+  pointer-events: none;
+  transform: translateY(-50%);
+}
+
+.base-node__handle-label--left {
+  left: 10px;
+}
+
+.base-node__handle-label--right {
+  right: 10px;
+}
+
+.base-node__handle-label--top,
+.base-node__handle-label--bottom {
+  transform: translate(-50%, 0);
+}
