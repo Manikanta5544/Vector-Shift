@@ -1,0 +1,49 @@
+/* reactflow-theme.css */
+
+.react-flow__minimap {
+  background-color: var(--color-canvas);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.react-flow__controls {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+}
+
+.react-flow__controls-button {
+  background: transparent;
+  border-bottom: 1px solid var(--color-border);
+  fill: var(--color-text-secondary);
+  color: var(--color-text-secondary);
+}
+
+.react-flow__controls-button:hover {
+  background: var(--color-surface-raised);
+}
+
+.react-flow__controls-button svg {
+  fill: currentColor;
+}
+
+.react-flow__edge-path {
+  stroke: var(--color-node-border);
+  stroke-width: 1.5;
+}
+
+.react-flow__edge.selected .react-flow__edge-path,
+.react-flow__edge:hover .react-flow__edge-path {
+  stroke: var(--color-primary);
+}
+
+.react-flow__edge-text {
+  fill: var(--color-text-secondary);
+}
+
+.react-flow__connection-path {
+  stroke: var(--color-primary);
+}

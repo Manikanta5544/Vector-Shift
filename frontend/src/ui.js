@@ -1,4 +1,6 @@
 // ui.js
+// Displays the drag-and-drop UI
+// --------------------------------------------------
 
 import { useState, useRef, useCallback } from 'react';
 import ReactFlow, { Controls, Background, MiniMap } from 'reactflow';
@@ -14,11 +16,13 @@ import { DatabaseNode } from './nodes/databaseNode';
 import { ConditionNode } from './nodes/conditionNode';
 import { TransformNode } from './nodes/transformNode';
 import { EmailNode } from './nodes/emailNode';
-import { createInitialNodeData } from './nodes/nodeConfig';
+import { createInitialNodeData, NODE_TYPES, CATEGORY_COLORS } from './nodes/nodeConfig';
 
 import 'reactflow/dist/style.css';
+import './reactflow-theme.css';
+import './ui.css';
 
-const gridSize = 20;
+const gridSize = 24;
 const proOptions = { hideAttribution: true };
 
 const nodeTypes = {
@@ -32,6 +36,8 @@ const nodeTypes = {
   transform: TransformNode,
   email: EmailNode,
 };
+
+const minimapNodeColor = (node) => CATEGORY_COLORS[NODE_TYPES[node.type]?.category] || '#6b7280';
 
 const selector = (state) => ({
   nodes: state.nodes,
@@ -47,21 +53,15 @@ export const PipelineUI = () => {
   const reactFlowWrapper = useRef(null);
   const [reactFlowInstance, setReactFlowInstance] = useState(null);
 
-  const {
-    nodes,
-    edges,
-    getNodeID,
-    addNode,
-    onNodesChange,
-    onEdgesChange,
-    onConnect,
-  } = useStore(selector, shallow);
+  const { nodes, edges, getNodeID, addNode, onNodesChange, onEdgesChange, onConnect } = useStore(
+    selector,
+    shallow
+  );
 
   // Builds a fully-formed data object (every declared field present, with
   // its resolved default) instead of the bare { id, nodeType } the starter
   // shipped with — so a node's data is never partially undefined.
-  const getInitNodeData = (nodeID, type) =>
-    createInitialNodeData(type, nodeID);
+  const getInitNodeData = (nodeID, type) => createInitialNodeData(type, nodeID);
 
   const onDrop = useCallback(
     (event) => {
@@ -69,14 +69,10 @@ export const PipelineUI = () => {
 
       if (!reactFlowInstance) return;
 
-      const reactFlowBounds =
-        reactFlowWrapper.current.getBoundingClientRect();
+      const reactFlowBounds = reactFlowWrapper.current.getBoundingClientRect();
 
       if (event?.dataTransfer?.getData('application/reactflow')) {
-        const appData = JSON.parse(
-          event.dataTransfer.getData('application/reactflow')
-        );
-
+        const appData = JSON.parse(event.dataTransfer.getData('application/reactflow'));
         const type = appData?.nodeType;
 
         // check if the dropped element is valid
@@ -110,30 +106,31 @@ export const PipelineUI = () => {
   }, []);
 
   return (
-    <>
-      <div
-        ref={reactFlowWrapper}
-        style={{ width: '100vw', height: '70vh' }}
+    <div className="pipeline-canvas" ref={reactFlowWrapper}>
+      <ReactFlow
+        nodes={nodes}
+        edges={edges}
+        onNodesChange={onNodesChange}
+        onEdgesChange={onEdgesChange}
+        onConnect={onConnect}
+        onDrop={onDrop}
+        onDragOver={onDragOver}
+        onInit={setReactFlowInstance}
+        nodeTypes={nodeTypes}
+        proOptions={proOptions}
+        snapGrid={[gridSize, gridSize]}
+        connectionLineType="smoothstep"
       >
-        <ReactFlow
-          nodes={nodes}
-          edges={edges}
-          onNodesChange={onNodesChange}
-          onEdgesChange={onEdgesChange}
-          onConnect={onConnect}
-          onDrop={onDrop}
-          onDragOver={onDragOver}
-          onInit={setReactFlowInstance}
-          nodeTypes={nodeTypes}
-          proOptions={proOptions}
-          snapGrid={[gridSize, gridSize]}
-          connectionLineType="smoothstep"
-        >
-          <Background color="#aaa" gap={gridSize} />
-          <Controls />
-          <MiniMap />
-        </ReactFlow>
-      </div>
-    </>
+        <Background color="#1f2937" gap={gridSize} />
+        <Controls />
+        <MiniMap nodeColor={minimapNodeColor} maskColor="rgba(11, 16, 32, 0.65)" pannable zoomable />
+      </ReactFlow>
+
+      {nodes.length === 0 && (
+        <div className="pipeline-empty-state">
+          <p>Drag a node onto the canvas to begin building your workflow.</p>
+        </div>
+      )}
+    </div>
   );
 };

@@ -3,7 +3,7 @@
 import React from 'react';
 import { Handle, Position } from 'reactflow';
 import { useStore } from '../store';
-import { resolveFieldDefault } from './nodeConfig';
+import { resolveFieldDefault, CATEGORY_COLORS } from './nodeConfig';
 import './BaseNode.css';
 
 const POSITION_MAP = {
@@ -73,12 +73,10 @@ const FieldInput = ({ field, value, onChange }) => {
 export const BaseNode = ({ id, data, selected, config, children }) => {
   const updateNodeField = useStore((state) => state.updateNodeField);
 
-  if (!config) {
-    console.error(`BaseNode: no config found for node id "${id}". Check nodeConfig.js.`);
-    return null;
-  }
+  if (!config) return null;
 
   const { label, icon, description, category, fields = [], handles = [], minWidth = 220 } = config;
+  const accent = CATEGORY_COLORS[category] || '#6B7280';
 
   const handlesByPosition = handles.reduce((acc, handle) => {
     const position = handle.position || 'left';
@@ -89,7 +87,7 @@ export const BaseNode = ({ id, data, selected, config, children }) => {
   return (
     <div
       className={`base-node base-node--${category || 'default'}${selected ? ' base-node--selected' : ''}`}
-      style={{ minWidth }}
+      style={{ minWidth, '--accent': accent }}
     >
       {Object.entries(handlesByPosition).map(([position, group]) =>
         group.map((handle, index) => {

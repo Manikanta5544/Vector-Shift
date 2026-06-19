@@ -21,10 +21,6 @@ export const NODE_TYPES = {
         defaultValue: 'Text',
       },
     ],
-    // metadata: {
-    //     version: '1.0',
-    // },
-    // tags: ['input', 'entrypoint', 'data'],
     handles: [{ id: 'value', type: 'source', position: 'right' }],
   },
 
@@ -48,10 +44,6 @@ export const NODE_TYPES = {
         defaultValue: 'Text',
       },
     ],
-    // metadata: {
-    //     version: '1.0',
-    // },
-    // tags: ['output', 'result', 'export'],
     handles: [{ id: 'value', type: 'target', position: 'left' }],
   },
 
@@ -61,10 +53,6 @@ export const NODE_TYPES = {
     description: 'Runs a system + user prompt through a language model.',
     category: 'ai',
     fields: [],
-    // metadata: {
-    //     version: '1.0',
-    // },
-    // tags: ['ai', 'llm', 'generation'],
     handles: [
       { id: 'system', type: 'target', position: 'left', label: 'system' },
       { id: 'prompt', type: 'target', position: 'left', label: 'prompt' },
@@ -86,10 +74,6 @@ export const NODE_TYPES = {
         defaultValue: '{{input}}',
       },
     ],
-    // metadata: {
-    //     version: '1.0',
-    // },
-    // tags: ['text', 'template', 'prompt'],
     handles: [{ id: 'output', type: 'source', position: 'right' }],
   },
 
@@ -123,10 +107,6 @@ export const NODE_TYPES = {
         placeholder: '{ "Authorization": "Bearer ..." }',
       },
     ],
-    // metadata: {
-    //     version: '1.0',
-    // },
-    // tags: ['http', 'api', 'integration'],
     handles: [
       { id: 'input', type: 'target', position: 'left' },
       { id: 'output', type: 'source', position: 'right' },
@@ -154,10 +134,6 @@ export const NODE_TYPES = {
         placeholder: 'SELECT * FROM users WHERE ...',
       },
     ],
-    // metadata: {
-    //     version: '1.0',
-    // },
-    // tags: ['database', 'query', 'storage'],
     handles: [
       { id: 'input', type: 'target', position: 'left' },
       { id: 'output', type: 'source', position: 'right' },
@@ -177,10 +153,6 @@ export const NODE_TYPES = {
         placeholder: 'value > 10',
       },
     ],
-    // metadata: {
-    //     version: '1.0',
-    // },
-    // tags: ['logic', 'branching', 'condition'],
     handles: [
       { id: 'input', type: 'target', position: 'left' },
       { id: 'true', type: 'source', position: 'right', label: 'True' },
@@ -209,10 +181,6 @@ export const NODE_TYPES = {
         placeholder: 'item => item.value',
       },
     ],
-    // metadata: {
-    //     version: '1.0',
-    // },
-    // tags: ['transform', 'mapping', 'processing'],
     handles: [
       { id: 'input', type: 'target', position: 'left' },
       { id: 'output', type: 'source', position: 'right' },
@@ -245,15 +213,18 @@ export const NODE_TYPES = {
         placeholder: 'Message content...',
       },
     ],
-    // metadata: {
-    //     version: '1.0',
-    // },
-    // tags: ['email', 'notification', 'communication'],
     handles: [
       { id: 'input', type: 'target', position: 'left' },
       { id: 'output', type: 'source', position: 'right', label: 'sent' },
     ],
   },
+};
+
+export const CATEGORY_COLORS = {
+  io: '#3B82F6',
+  ai: '#8B5CF6',
+  logic: '#F59E0B',
+  integration: '#10B981',
 };
 
 // Resolves a single field's default value, preferring a computed default

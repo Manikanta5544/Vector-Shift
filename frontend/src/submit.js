@@ -1,10 +1,14 @@
 // submit.js
 
-export const SubmitButton = () => {
+import './submit.css';
 
-    return (
-        <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
-            <button type="submit">Submit</button>
-        </div>
-    );
-}
+export const SubmitButton = () => {
+  return (
+    <footer className="app-footer">
+      <button type="button" className="submit-button">
+        <span className="submit-button__icon">▶</span>
+        Submit Pipeline
+      </button>
+    </footer>
+  );
+};
