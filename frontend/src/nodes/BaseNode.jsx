@@ -73,7 +73,10 @@ const FieldInput = ({ field, value, onChange }) => {
 export const BaseNode = ({ id, data, selected, config, children }) => {
   const updateNodeField = useStore((state) => state.updateNodeField);
 
-  if (!config) return null;
+  if (!config) {
+    console.error(`BaseNode: no config found for node id "${id}". Check nodeConfig.js.`);
+    return null;
+  }
 
   const { label, icon, description, category, fields = [], handles = [], minWidth = 220 } = config;
   const accent = CATEGORY_COLORS[category] || '#6B7280';
