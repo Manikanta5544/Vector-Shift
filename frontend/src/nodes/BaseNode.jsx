@@ -78,7 +78,7 @@ export const BaseNode = ({ id, data, selected, config, children }) => {
     return null;
   }
 
-  const { label, icon, description, category, fields = [], handles = [], minWidth = 220 } = config;
+  const { label, icon: Icon, description, category, fields = [], handles = [], minWidth = 220 } = config;
   const accent = CATEGORY_COLORS[category] || '#6B7280';
 
   const handlesByPosition = handles.reduce((acc, handle) => {
@@ -119,7 +119,11 @@ export const BaseNode = ({ id, data, selected, config, children }) => {
       )}
 
       <div className="base-node__header">
-        {icon && <span className="base-node__icon">{icon}</span>}
+        {Icon && (
+          <span className="base-node__icon">
+            <Icon size={14} strokeWidth={2} />
+          </span>
+        )}
         <span className="base-node__title">{label}</span>
       </div>
 

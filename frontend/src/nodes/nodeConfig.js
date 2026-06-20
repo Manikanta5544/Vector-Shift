@@ -1,9 +1,21 @@
 // nodeConfig.js
 
+import {
+  ArrowDownToLine,
+  ArrowUpToLine,
+  FileText,
+  Brain,
+  GitBranch,
+  Workflow,
+  Globe,
+  Database,
+  Mail,
+} from 'lucide-react';
+
 export const NODE_TYPES = {
   customInput: {
     label: 'Input',
-    icon: '⬇️',
+    icon: ArrowDownToLine,
     description: 'Defines a pipeline input.',
     category: 'io',
     fields: [
@@ -26,7 +38,7 @@ export const NODE_TYPES = {
 
   customOutput: {
     label: 'Output',
-    icon: '⬆️',
+    icon: ArrowUpToLine,
     description: 'Defines a pipeline output.',
     category: 'io',
     fields: [
@@ -49,7 +61,7 @@ export const NODE_TYPES = {
 
   llm: {
     label: 'LLM',
-    icon: '🧠',
+    icon: Brain,
     description: 'Runs a system + user prompt through a language model.',
     category: 'ai',
     fields: [],
@@ -62,7 +74,7 @@ export const NODE_TYPES = {
 
   text: {
     label: 'Text',
-    icon: '📝',
+    icon: FileText,
     description: 'Static or templated text.',
     category: 'io',
     fields: [
@@ -81,7 +93,7 @@ export const NODE_TYPES = {
 
   api: {
     label: 'API Request',
-    icon: '🌐',
+    icon: Globe,
     description: 'Calls an external HTTP endpoint.',
     category: 'integration',
     minWidth: 260,
@@ -115,7 +127,7 @@ export const NODE_TYPES = {
 
   database: {
     label: 'Database Query',
-    icon: '🗄️',
+    icon: Database,
     description: 'Runs a query against a connected database.',
     category: 'integration',
     minWidth: 260,
@@ -142,7 +154,7 @@ export const NODE_TYPES = {
 
   condition: {
     label: 'Condition',
-    icon: '🔀',
+    icon: GitBranch,
     description: 'Branches the pipeline based on an expression.',
     category: 'logic',
     fields: [
@@ -162,7 +174,7 @@ export const NODE_TYPES = {
 
   transform: {
     label: 'Transform',
-    icon: '🔧',
+    icon: Workflow,
     description: 'Reshapes data flowing through the pipeline.',
     category: 'logic',
     fields: [
@@ -189,7 +201,7 @@ export const NODE_TYPES = {
 
   email: {
     label: 'Send Email',
-    icon: '✉️',
+    icon: Mail,
     description: 'Sends an email as a pipeline action.',
     category: 'integration',
     fields: [

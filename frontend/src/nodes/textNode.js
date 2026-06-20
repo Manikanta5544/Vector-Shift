@@ -27,6 +27,7 @@ const distribute = (index, total) => `${((index + 1) / (total + 1)) * 100}%`;
 const config = NODE_TYPES.text;
 const accent = CATEGORY_COLORS[config.category] || '#6B7280';
 const textField = config.fields[0];
+const Icon = config.icon;
 
 export const TextNode = ({ id, data, selected }) => {
   const updateNodeField = useStore((state) => state.updateNodeField);
@@ -96,7 +97,9 @@ export const TextNode = ({ id, data, selected }) => {
       ))}
 
       <div className="text-node__header">
-        <span className="text-node__icon">{config.icon}</span>
+        <span className="text-node__icon">
+          <Icon size={14} strokeWidth={2} />
+        </span>
         <span className="text-node__title">{config.label}</span>
       </div>
       <p className="text-node__description">{config.description}</p>

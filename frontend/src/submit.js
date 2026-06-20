@@ -3,6 +3,7 @@
 
 import { useState, useCallback } from 'react';
 import { shallow } from 'zustand/shallow';
+import { Play, Loader2 } from 'lucide-react';
 import { useStore } from './store';
 import { parsePipeline, PipelineApiError } from './api/pipelineApi';
 import './submit.css';
@@ -43,8 +44,10 @@ export const SubmitButton = () => {
         disabled={isSubmitting}
         aria-busy={isSubmitting}
       >
-        <span className="submit-button__icon">{isSubmitting ? '…' : '▶'}</span>
-        {isSubmitting ? 'Analyzing…' : 'Submit Pipeline'}
+        <span className="submit-button__icon">
+          {isSubmitting ? <Loader2 size={14} className="submit-button__spinner" /> : <Play size={13} fill="currentColor" />}
+        </span>
+        {isSubmitting ? 'Analyzing…' : 'Analyze Pipeline'}
       </button>
     </footer>
   );

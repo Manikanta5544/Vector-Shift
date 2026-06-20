@@ -2,7 +2,7 @@
 
 import { CATEGORY_COLORS } from './nodes/nodeConfig';
 
-export const DraggableNode = ({ type, label, icon, category }) => {
+export const DraggableNode = ({ type, label, icon: Icon, category }) => {
   const onDragStart = (event, nodeType) => {
     const appData = { nodeType };
     event.target.style.cursor = 'grabbing';
@@ -18,8 +18,11 @@ export const DraggableNode = ({ type, label, icon, category }) => {
       onDragEnd={(event) => (event.target.style.cursor = 'grab')}
       draggable
     >
-      <span className="draggable-node__dot" />
-      {icon && <span className="draggable-node__icon">{icon}</span>}
+      {Icon && (
+        <span className="draggable-node__icon">
+          <Icon size={15} strokeWidth={2} />
+        </span>
+      )}
       <span className="draggable-node__label">{label}</span>
     </div>
   );

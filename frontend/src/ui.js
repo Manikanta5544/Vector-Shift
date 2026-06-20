@@ -4,6 +4,7 @@
 
 import { useState, useRef, useCallback } from 'react';
 import ReactFlow, { Controls, Background, MiniMap } from 'reactflow';
+import { Workflow } from 'lucide-react';
 import { useStore } from './store';
 import { shallow } from 'zustand/shallow';
 
@@ -123,12 +124,24 @@ export const PipelineUI = () => {
       >
         <Background color="#1f2937" gap={gridSize} />
         <Controls />
-        <MiniMap nodeColor={minimapNodeColor} maskColor="rgba(11, 16, 32, 0.65)" pannable zoomable />
+        <MiniMap
+          nodeColor={minimapNodeColor}
+          maskColor="rgba(11, 16, 32, 0.65)"
+          style={{ width: 160, height: 100 }}
+          pannable
+          zoomable
+        />
       </ReactFlow>
 
       {nodes.length === 0 && (
         <div className="pipeline-empty-state">
-          <p>Drag a node onto the canvas to begin building your workflow.</p>
+          <div className="pipeline-empty-state__icon">
+            <Workflow size={20} strokeWidth={1.75} />
+          </div>
+          <p className="pipeline-empty-state__title">Start building</p>
+          <p className="pipeline-empty-state__subtitle">
+            Drag components from the toolbar to create your workflow pipeline.
+          </p>
         </div>
       )}
     </div>

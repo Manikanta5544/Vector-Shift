@@ -3,8 +3,14 @@
 .react-flow__minimap {
   background-color: var(--color-canvas);
   border: 1px solid var(--color-border);
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius-md);
   overflow: hidden;
+  opacity: 0.8;
+  transition: opacity 0.15s ease;
+}
+
+.react-flow__minimap:hover {
+  opacity: 1;
 }
 
 .react-flow__controls {

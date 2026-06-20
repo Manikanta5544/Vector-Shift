@@ -41,8 +41,11 @@
 }
 
 .text-node__icon {
-  font-size: 14px;
-  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent, var(--color-text-secondary));
+  flex: 0 0 auto;
 }
 
 .text-node__description {
@@ -118,9 +121,6 @@
   color: var(--color-text-muted);
   white-space: nowrap;
   pointer-events: none;
-  max-width: 120px;
-  overflow:hidden;
-  text-overflow: ellipsis;
 }
 
 .text-node__variables {
@@ -155,9 +155,4 @@
   color: #93c5fd;
   font-family: var(--font-mono);
   font-size: 10.5px;
-}
-
-.text-node__title {
-  font-size: 13px;
-  letter-spacing: 0.01em;
 }

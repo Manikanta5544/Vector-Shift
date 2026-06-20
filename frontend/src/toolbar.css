@@ -1,11 +1,18 @@
-/* toolbar.css */
+/* toolbar.css
+ *
+ * One boundary system, not two. Each pill already has its own border —
+ * wrapping a second border/fill around the whole category on top of that
+ * is what read as "everything boxed together." Categories are separated
+ * by whitespace and a single hairline divider instead; the label sits
+ * inline at quiet, low-opacity text rather than another visual container.
+ */
 
 .toolbar {
   flex: 0 0 auto;
   display: flex;
   align-items: center;
-  gap: 28px;
-  padding: 14px 24px;
+  gap: 30px;
+  padding: 13px 24px;
   background: var(--color-surface);
   border-bottom: 1px solid var(--color-border);
   flex-wrap: wrap;
@@ -15,23 +22,24 @@
   flex: 0 0 auto;
   font-size: 11px;
   font-weight: 700;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--color-text-muted);
+  opacity: 0.7;
 }
 
 .toolbar__groups {
   display: flex;
   align-items: center;
-  gap: 24px;
+  gap: 28px;
   flex-wrap: wrap;
 }
 
 .toolbar__group {
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding-left: 24px;
+  gap: 12px;
+  padding-left: 28px;
   border-left: 1px solid var(--color-border);
 }
 
@@ -41,15 +49,19 @@
 }
 
 .toolbar__group-label {
-  font-size: 10px;
+  flex: 0 0 auto;
+  font-size: 11px;
   font-weight: 600;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--color-text-muted);
+  opacity: 0.6;
+  white-space: nowrap;
 }
 
 .toolbar__group-items {
   display: flex;
+  align-items: center;
   gap: 8px;
   flex-wrap: wrap;
 }
